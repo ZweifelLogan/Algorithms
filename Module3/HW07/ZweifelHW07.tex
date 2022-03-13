@@ -1,0 +1,179 @@
+% ===============================================================
+%
+%  Template for creating scribe notes for CS:3330, Algorithms.             I am using this template to get my homework PDF's set up as well
+%
+%  Fill in your name, lecture date, and body of scribe notes
+%  as indicated below.
+%
+% ===============================================================
+
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amssymb, amsthm}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
+
+\setlength{\topmargin}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+\pagestyle{plain}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\bf\large CS:3330, Algorithms
+\end{center}
+
+\begin{center}
+\bf\large HW07 Randomness  %Fill in Name of Homework here
+\end{center}
+
+\noindent
+Logan Zweifel     % FILL IN YOUR NAME HERE
+\hfill
+October 3, 2021           % FILL IN HW DATE HERE
+
+\noindent
+\rule{\textwidth}{1pt}
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BODY OF HOMEWORK NOTES GOES HERE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Inversion} %%%%%%%%%%%%%%%%%%%%%%%%%                         1
+Let $A$ be an array of size $n$ containing $n$ distinct numbers. If $i < j$ and $A[i] > A[j]$, then the pair $(i, j)$ is called an inversion in $A$. Suppose that each element of $A$ is chosen uniformly at random from the range 1 through $n$. Use indicator random variabes to compute the expected number of inversions.\\
+\\
+Let $X_X$ represent the indicator random variable when an inversion in the pair $(i, j)$ occurs in array $A$. For $1<i \leq j \leq n$, let $P(X_X = 1) = 1/2)$. This implies that given two random numbers from the array $A$, assigned to i and j, there is a 50\% chance that an inversion will occur. Therefore, $E[X_X] = \frac{1}{2}$. Next, I let the X represent all of the inversions that occur in $A$ such that
+
+\begin{equation*}
+X = \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} X_X
+\end{equation*}
+
+\noindent and finally, the expected number of pairs of inversions to occur in $A$ is represented by 
+
+\begin{equation*}
+E[X] = E[\sum_{i=1}^{n-1} \sum_{j=i+1}^{n} X_X]
+\end{equation*}
+
+Using the linearity of expectations, substituting in $E[X_X]$ stated above and the fact that the two summations can be represented as $\frac{n(n-1)}{2}$ as that is how many pairs there such that an inversion could occur in A, the following can be done to get the expected number of inversions in $A$:
+
+\begin{eqnarray*}
+E[X] &=& E[\sum_{i=1}^{n-1} \sum_{j=i+1}^{n} X_X] \\
+	&=& \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} E[X_X] \\
+	&=& \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} \frac{1}{2} \\
+	&=& \frac{n(n-1)}{2} * \frac{1}{2} \\
+	&=& \frac{n(n-1)}{4}
+\end{eqnarray*}
+
+\section{Lottery numbers}%%%%%%%%%%%%%%%%%%%%%%%                    2
+Some lotteries award enormous prizes to people who correctly choose a set of seven numbers from 1 to 60. What is the probability of winning such a lottery.
+
+%%%%%%%%%%%%%%%% Insert definition of combination here
+
+\bigskip
+\bigskip
+
+The combination,
+$ \left(\!
+\begin{array}{c}
+	60 \\
+	7
+\end{array}
+ \!\right)$
+represents the number of ways that the seven lottery numbers can be picked. 1 Divided by said combination will be the probability of the event that a person will pick the correct numbers,
+
+\begin{equation*}
+\frac{1}{
+\left(\!
+\begin{array}{c}
+	60 \\
+	7
+\end{array}
+ \!\right)
+} = \frac{1}{386206920} \approx 2.6*10^{-9}
+\end{equation*}
+
+Essentialy, there is an extremely miniscule chance that someone is able to pick the correct lottery numbers.
+
+
+\section{Bit Sequence} %%%%%%%%%%%%%%%%%%%%%%%%%%%%           3
+A sequence of 16 bits is generated uniformly at random. What is the probability that at least one of these bits is 0?
+
+\bigskip
+\bigskip
+
+A bit has 2 states, 1 or 0, each having the same chance to occur, $\frac{1}{2}$. The complement of an event is the probability that said event won't occur and is represented by $(1-p)$. The complement of the event that there is at least one bit that is 0 out of the 16 is the event that all 16 bits are 1. Because the state of the bits are chosen uniformly random and are independent of each other, the probability of all 16 bits having a state of 1 is $(\frac{1}{2})^{16}$. Therefore, the probability that at least one of the 16 bits is 0 is,
+
+\begin{equation*}
+(1-(\frac{1}{2})^{16}) \approx 0.99998
+\end{equation*}
+
+This means that is nearly guaranteed that at least one of the 16 bits will be a 0.
+
+
+
+
+
+\section{Unbiased-Random}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                   4
+Suppose that you want to write a routine that will return a 0 with probability $1/2$ and a 1 wih probability $1/2$. At your disposal is a procedure called Biased\_Random, that returns either a 0 or 1. It returns 0 with some probability $p$ and returns 1 with probability $1-p$, where $0<p<1$. Unfortunately you do not know what $p$ is. Give an algorithm that uses Biased\_Random as a subroutine, and returns an unbiased answer. Your algorithm should return 0 with probability $1/2$ and return 1 with a probability $1/2$. Explain why your algorithm is correct.
+
+\bigskip
+\bigskip
+
+My unbiased\_random algorithm would call biased\_random twice and compare the what was returned. If the two values returned from biased\_random are the same value, biased\_random is called twice again and this will continue until the two values returned are different. When this happens, my unbiased\_random algorithm would return the first value returned from biased\_random between the two calls to that algorithm.\\
+To prove that my algorithm returns an unbiased answer, let the first call of biased\_random be represented by a and the second call represented by b. The probabilites of these variables being different is the following:
+
+\begin{eqnarray*}
+P(a&=&0 \text{ and } b=1) = (1-p)*p \\
+P(a&=&1 \text{ and } b=0) = p*(1-p)
+\end{eqnarray*}
+
+\noindent The values $(1-p)*p$ and $p*(1-p)$ are equivalent and therefore each have an equal chance of occuring proving that my algorithm would return an unbiased random number by onling calling biased\_random.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

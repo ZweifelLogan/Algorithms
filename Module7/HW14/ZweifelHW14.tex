@@ -1,0 +1,156 @@
+% ===============================================================
+%
+%  Template for creating scribe notes for CS:3330, Algorithms.             I am using this template to get my homework PDF's set up as well
+%
+%  Fill in your name, lecture date, and body of scribe notes
+%  as indicated below.
+%
+% ===============================================================
+
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amssymb, amsthm}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+
+
+
+\setlength{\topmargin}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+\pagestyle{plain}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\bf\large CS:3330, Algorithms
+\end{center}
+
+\begin{center}
+\bf\large HW14 - NP-Completeness  %Fill in Name of Homework here
+\end{center}
+
+\noindent
+Logan Zweifel     % FILL IN YOUR NAME HERE
+\hfill
+December 5, 2021           % FILL IN HW DATE HERE
+
+\noindent
+\rule{\textwidth}{1pt}
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BODY OF HOMEWORK NOTES GOES HERE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Does P=NP?}
+Suppose you show that a decision problem A is polynomial-time reducible to an NP-Complete problem B. In addition, you also have shown that problem A can be solved in polynomial time. Have you just proven that $P=NP$? Why or why not?
+
+\bigskip
+\bigskip
+
+No, this example does not prove that $P=NP$. Because the poly-time solution to A in no way helps to find a solution for B, poly-time reducing A to B does not help to solve the already established NP-Complete problem B. Because B does not have a poly-time solution, it can not be proven from this statement that $P=NP$.
+
+
+\bigskip
+\bigskip
+
+\section{Independent-Set}
+Define INDEPENDENT-SET as the problem that takes a graph G and an integer k and asks whether G contains an independent set of vertices of size k. That is, G contains a set of I of vertices of size k such that, for any u and v in I, there is no edge \{u, v\} in G. Show that INDEPENDENT-SET (referred to as I-S in the solution) is NP-Complete.\\
+
+\bigskip
+\subsection*{a) show I-S is in NP}
+\noindent After obtaining a guessed solution, the verification algorithm for I-S ensures the following steps are all TRUE:
+
+\bigskip
+
+1) $|I| = k$        ,     Ensures the number of vertices in I is equal to k
+
+2) For $v \in I, 1 \leq v \leq |V|$   ,vertices in I are also in G
+
+3) For each edge $\{u, v\}$ in G, u and i are not in I. (This step only checks vertices that are in both I and G) \\
+
+\noindent Step one runs in poly-time as it is a simple check on values of inputs. Step two runs in $O(|V|)$ and step three runs in $O(n^2)$ as this step needs to traverse values in the G's adjacency matrix. Altogether this verification algorithm runs in poly-time.
+
+\bigskip
+\bigskip
+
+\subsection*{b) show I-S is NP-Hard}
+\noindent To show I-S is NP-Hard, the clique problem will be used to show the problem is poly-time reducible. The clique problem can be defined as an undirected graph G = (V, E) where a clique is a subset of vertices such that for all $u, v \in W$, $\{u, v\} \in E$. \\
+
+\noindent The follwoing steps will show that I-S is NP-Hard: \\
+
+1) Instances of the clique problem, as stated earlier, consist of the undirected graph G = (V, E) and an int k. The complement of G (notated G') consists of all the same vertices as G but the opposite edges (If an edge existed in G, it doesn't in G'). Computing G' requires traversing all of the vertices and edges in the graph which would run in poly-time showing that this step is valid for transitioning an instance of clique to an instance of I-S. \\
+
+2) Assume that G contains a clique of size k. This implies for and edge in W, $\{u, v\} \in E$. This further implies that $\{u, v\} \notin$ E'. This essenitally means the edges of the clique in G cannot exist in G'. These nonexistent edges in G' would form an Independent-Set from the same set of vertices that formed a clique in G. This results in a yes from both I-S and clique. \\
+
+3) Assume G' contains and independent-set of vertices of size k. Taking the complement of G' (G), the vertices that formed and I-S now form a clique. \\
+
+4) This TRANS algorithm to reduce an instance of clique to I-S runs in poly-time as the running time of forming the compement of a graph run in O(V+E) which is poly-time. In addition, steps 2 and 3 show that clique is poly-time reducible to I-S and vice versa further establishing that a yes in one instance leads to a yes in the other proving that both are NP-Hard. Because I-S has been show to be in NP and be NP-Hard it has been proven that I-S can be correctly classified as NP-Complete.\\
+
+\bigskip
+\bigskip
+
+\section{Mystery Novel Problem}
+Suppose you are an author who writes mystery novels and you are trying to decide how your
+latest book should end. To help you make this decision, you want to assemble a group of readers from
+GoodReads.com to do a focus group. To avoid biases, you have asked that the group be selected so that no
+two people in the group have read the same book. So among the set of possible focus group members, you
+have asked that each one fill out a list of all the books they have read, and you will use these lists to decide
+who to invite for the focus group. \\
+
+\noindent Show that the decision version of the problem of finding the largest set of readers for this focus group, such that no two people in the group have read the same book, is NP-Complete. \\
+
+\bigskip
+\bigskip
+
+Because this problem (which I'll call A from now on) is so similar to the Independent-Set problem, problem A can be shown to be NP-Complete by first showing A is in NP and then poly-time reducing I-S to it to show it is NP-Hard. \\
+
+Problem A can easily be shown to be in NP if it is thought of in the same context as the graph from the I-S problem. Every person is a vertex and an edge connects two people if they have both read the same book. Following this logic the verification algorithm in part 2a above can be used to determine whether a given guess is a solution for problem A while running in poly-time. \\
+
+Because problem A is essentially looking just looking for an independent-set of people, an instance of both the I-S and clique problem can easily be transitioned into an instance of problem A and vice versa, and will give results of yes from both problems for the same given guess. This shows that already known NP-Complete problem I-S can be poly-time reduced to problem A and therefore problem A is NP-Hard. \\
+
+Because problem A is both in NP and NP-Hard, it can be correctly classified as an NP-Complete problem.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

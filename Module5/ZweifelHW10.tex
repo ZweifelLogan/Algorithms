@@ -1,0 +1,151 @@
+% ===============================================================
+%
+%  Template for creating scribe notes for CS:3330, Algorithms.             I am using this template to get my homework PDF's set up as well
+%
+%  Fill in your name, lecture date, and body of scribe notes
+%  as indicated below.
+%
+% ===============================================================
+
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amssymb, amsthm}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{multirow}
+
+
+
+\setlength{\topmargin}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+\pagestyle{plain}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\bf\large CS:3330, Algorithms
+\end{center}
+
+\begin{center}
+\bf\large HW10 - Matrix Multiplication  %Fill in Name of Homework here
+\end{center}
+
+\noindent
+Logan Zweifel     % FILL IN YOUR NAME HERE
+\hfill
+October 24, 2021           % FILL IN HW DATE HERE
+
+\noindent
+\rule{\textwidth}{1pt}
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BODY OF HOMEWORK NOTES GOES HERE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Python program}
+Write a python program containing a recursive function that takes as input an integer n and prints the number of different orders in which n matrices can be multipled
+
+\bigskip
+\bigskip
+
+\noindent Python program attached with this assignment on ICON
+
+\section{Testing Python Program}
+Show the output of your function from Question 1 for $n = 2, 4, 6, 8, 10, 12, 12$.
+
+\bigskip
+\bigskip
+
+\noindent If you run the python program that goes along with this assignment it will display the answers for all questions asked in the assignment. They will be stated on this document as well
+
+\bigskip
+\bigskip
+
+Testing the python program implemented for question 1, the following was calculated with format 'size of input n : num. of different orders'. 2:1, 4:4, 6:16, 8:64, 10:256, 12:1024, 14:4096 . 
+
+
+\section{Chained Multiplication}
+Suppose we want to perfrom the matrix multiplication $A_1 \times A_2 \times A_3 \times A_4 \times A_5$, where the dimensions of the matrices are -$>$  $A_1: 10 \times 4$, $A_2: 4 \times 5$, $A_3: 5 \times 20$, $A_4: 20 \times 2$, $A_5: 2 \times 50$. \\
+
+\subsection*{a) Matrix M}
+Show the matrix M produced by Algorithm 3.6 in the textbook. \\
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{c c | c c c c c}
+	\multicolumn{7}{c}{$j$} \\
+	\multirow{7}{*}{$i$} \\
+	& x & 1 & 2 & 3 & 4 & 5 \\
+	\hline
+	& 1 & 0 & 200 & 1200 & 320 & 1320 \\
+	& 2 & x & 0 & 400 & 240 & 640 \\
+	& 3 & x & x & 0 & 200 & 700 \\
+	& 4 & x & x & x & 0 & 2000 \\
+	& 5 & x & x & x & x & 0 \\ [0.2cm]
+	\multicolumn{7}{c}{M} \\
+\end{tabular}
+\end{center}
+
+
+\subsection*{b) Matrix P}
+Show the matrix P produced by Algorithm 3.6 in the textbook. \\
+
+\bigskip
+
+\begin{center}
+\begin{tabular}{c c | c c c c c}
+	\multicolumn{7}{c}{$j$} \\
+	\multirow{7}{*}{$i$} \\
+	& x & 1 & 2 & 3 & 4 & 5 \\
+	\hline
+	& 1 & x & 1 & 1 & 1 & 4 \\
+	& 2 & x & x & 2 & 2 & 4 \\
+	& 3 & x & x & x & 3 & 4 \\
+	& 4 & x & x & x & x & 4 \\
+	& 5 & x & x & x & x & x \\ [0.2cm]
+	\multicolumn{7}{c}{P} \\
+\end{tabular}
+\end{center}
+
+\subsection*{c) Optimal Output}
+What is the optimal number of multiplications needed? \\
+
+\bigskip
+
+\noindent The optimal number of multiplications needed is 1320.
+
+\subsection*{d) Optimal Order}
+Show the optimal order for evaluating $A_1 \times A_2 \times A_3 \times A_4 \times A_5$. \\
+
+\bigskip
+
+\noindent The optimal order for evaluating this chained matrix multiplication is:
+
+\begin{center}
+$(A_1(A_2(A_3 A_4)))A_5$
+\end{center}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

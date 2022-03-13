@@ -1,0 +1,178 @@
+% ===============================================================
+%
+%  Template for creating scribe notes for CS:3330, Algorithms.             I am using this template to get my homework PDF's set up as well
+%
+%  Fill in your name, lecture date, and body of scribe notes
+%  as indicated below.
+%
+% ===============================================================
+
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amssymb, amsthm}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+\usepackage{mathtools}
+\usepackage{amsmath}
+
+
+
+\setlength{\topmargin}{0pt}
+\setlength{\textheight}{9in}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+\pagestyle{plain}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\bf\large CS:3330, Algorithms
+\end{center}
+
+\begin{center}
+\bf\large HW04 Order Problems    %Fill in Name of Homework here
+\end{center}
+
+\noindent
+Logan Zweifel     % FILL IN YOUR NAME HERE
+\hfill
+September 12, 2021           % FILL IN HW DATE HERE
+
+\noindent
+\rule{\textwidth}{1pt}
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BODY OF HOMEWORK NOTES GOES HERE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%1   Big-O
+\section{Big-O \#1}
+Show directly, using the definition of Big-O, that $2n^2+9n \in O(n^2)$.
+
+
+\bigskip
+\bigskip
+The following is the definition for Big-O which will be used for problems 1-3 on this assignment. For a given complexity function $f(n)$, $O(f(n))$ is the set of complexity functions $g(n)$ for which there exists some positive real constant $c$ and some nonnegative integer $N$ such that for all $n \geq N$,
+
+\begin{equation*}
+g(n) \leq c * f(n)
+\end{equation*}
+
+\bigskip
+\bigskip
+
+\noindent
+I show that $2n^2+9n \in O(n^2)$. Because, for $n \geq 1$,
+\begin{eqnarray*}
+2n^2 + 9n &\leq& 2n^2 + 9n^2 \\
+&\leq& 11n^2
+\end{eqnarray*}
+Where $c=11$ and $N=1$ were used to obtain the result.
+
+
+
+%%%%
+\section{Big-O \#2}
+Show directly, using the definition of Big-O, that $5n^2+10 \in O(n^3)$.
+
+\bigskip
+\bigskip
+
+\noindent
+I show that $5n^2+10 \in O(n^2)$. Because, for $n \geq 2$,
+\begin{equation*}
+5n^2 + 10 \leq 5n^3
+\end{equation*}
+Where $c=5$ and $N=2$ were used to obtain the result.
+
+
+%%%%
+\section{Big-O \#3}
+Show directly, using the definition of Big-O, that $6n^2+12n \in O(n^2)$.
+
+
+\bigskip
+\bigskip
+\noindent
+I show that $6n^2+12n \in O(n^2)$. Because, for $n \geq 1$,
+\begin{eqnarray*}
+6n^2 + 12n &\leq& 6n^2 + 12n^2 \\
+&\leq& 18n^2
+\end{eqnarray*}
+Where $c=18$ and $N=1$ were used to obtain the result.
+
+%%%%%%%%%%%2  Omega
+\section{Omega \# 1}
+Show directly, using the definition of $\Omega$, that $6n^3-12n \in \Omega(n^3)$.
+
+
+\bigskip
+\bigskip
+The following is the definition for Omega and will be used for problems 4-6 on this assignment. For a given complexity function $f(n)$, $\Omega(f(n))$ is the set of complexity functions $g(n)$ for which there exists some positive real constant $c$ and some nonnegative integer $N$ such that for all $n \geq N$,
+
+\begin{equation*}
+g(n) \geq c * f(n)
+\end{equation*}
+
+\bigskip
+\bigskip
+\noindent
+I show that $6n^3-12n \in \Omega(n^3)$. Because, for $n \geq 2$,
+\begin{equation*}
+6n^3-12n \geq 1*n^3
+\end{equation*}
+Where $c=1$ and $N=2$ were used to obtain the result. For this question and the other two $\Omega$ questions on this HW, the constant was picked as 1 before the N, because that keeps the right side of the inequality as low as possible. Then, the N value was calculated by doing a simple calculation as to when N is the lowest and the inequality is true.
+
+%%%%
+\section{Omega \# 2}
+Show directly, using the definition of $\Omega$, that $4n^3+2n^2 \in \Omega(n^2)$.
+
+\bigskip
+\bigskip
+\noindent
+I show that $4n^3+2n^2 \in \Omega(n^2)$. Because, for $n \geq 0$,
+\begin{equation*}
+4n^3+2n^2 \geq 1*n^2
+\end{equation*}
+Where $c=1$ and $N=0$ were used to obtain the result.
+
+
+%%%%
+\section{Omega \# 3}
+Show directly, using the definition of $\Omega$, that $6n^2+12n \in \Omega(n^2)$.
+
+
+\bigskip
+\bigskip
+\noindent
+I show that $6n^2+12n \in \Omega(n^2)$. Because, for $n \geq 0$,
+\begin{equation*}
+6n^2+12n \geq 1*n^2
+\end{equation*}
+Where $c=1$ and $N=0$ were used to obtain the result.
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
